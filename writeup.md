@@ -1,9 +1,9 @@
 
-**Finding Lane Lines on the Road**
+#Finding Lane Lines on the Road
 
 ---
 
-## Writeup
+## Implementation
 
 ### lane_find_pipeline()
 The first step was to add a function called lane_find_pipeline() in order to be used in the existing process_image(), which is used to process  each frame in the videos. This function includes all the steps defined in the "Concepts" part. 
@@ -19,12 +19,12 @@ Second step was to improve the draw_lines() function in order to draw a continuo
 
 The lines returned from hough_lines were filtered initially using their slope (had to be between approx 0.5 ~ 0.8 and -0.5 ~ -0.8) but the results were not as expected. After that I tried to calculate the line's angle but still the filter doesn't work as expected.
 
-### 2.Shortcomings
+## 2.Shortcomings
 The shortcomings are better seen on the challenge video.
 
 Main shortcomings are that this solution does not work very well when there are many "impurities" in the image, like tree shadows or various asphalt material/color changes. Also, steeper road curves will not be detected.
 
-### 3. Improvements
+## 3. Improvements
 
 A possible improvement would be to correctly detect the angle of the lines and consider to filter only those with angles very close to lane lines.
 
