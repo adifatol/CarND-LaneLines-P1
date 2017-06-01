@@ -1,9 +1,9 @@
 
-#Finding Lane Lines on the Road
+# Finding Lane Lines on the Road
 
 ---
 
-## Implementation
+## 1.Implementation
 
 ### lane_find_pipeline()
 The first step was to add a function called lane_find_pipeline() in order to be used in the existing process_image(), which is used to process  each frame in the videos. This function includes all the steps defined in the "Concepts" part. 
@@ -17,7 +17,11 @@ This pipeline was then tested on the test_images folder and output images were s
 ### draw_lines()
 Second step was to improve the draw_lines() function in order to draw a continuous line for left and right lanes. First the start & end points for the segments detected through hough_lines function were separated on left/right based on the slope calculated by polyfit function. After that, new start & end points were calculated using the slope & intercept values calculated for the left / right separated points only. The new lines are starting from the bot of the image (image height) up to ~1/3. The results were OK-ish after some parameters tweaking again.
 
-The lines returned from hough_lines were filtered initially using their slope (had to be between approx 0.5 ~ 0.8 and -0.5 ~ -0.8) but the results were not as expected. After that I tried to calculate the line's angle but still the filter doesn't work as expected.
+### filtering angles
+In draw_lines function, the resulted lines of hough_lines were filtered using the slope calculated by polyfit (had to be between approx 0.5 ~ 0.8 and -0.5 ~ -0.8) but the results were not as expected. After that, I tried to calculate the line's angle but still the filter doesn't work as expected.
+
+---
+Then the full flow was tested on all the videos (especially on the challange one) and the parameters were tweaked alot.
 
 ## 2.Shortcomings
 The shortcomings are better seen on the challenge video.
