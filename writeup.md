@@ -3,12 +3,14 @@
 
 ---
 
-## Description
+## Writeup
 
 ### lane_find_pipeline()
-The first step was to add a function called lane_find_pipeline() in order to be used in the existing process_image(), which is used to process  each frame in the videos. This function includes all the steps defined in the "Concepts" part. In the beginning some useful parameters were declared.
+The first step was to add a function called lane_find_pipeline() in order to be used in the existing process_image(), which is used to process  each frame in the videos. This function includes all the steps defined in the "Concepts" part. 
 
-After that, the image/frame is converted to grayscale and gaussian blur is applied in order for the image to be prepared for canny edge detector. This function then outputs an image containing all the lines where the colors have sudden changes instead of very smooth gradients. This is applied because the lane lines are usually white/yellow lines over black/gray asphalts and the edge/border of the lines should be very sudden. On the image containing these edges, the hough_lines function is used in order to find the lanes, but not before defining a region of interest. The region of interest assures that the lines are not polluted with points outside the actual lanes. Some offsets are dynamically calculated based on the image shape in order to have the minimal interest area.
+***Flow***
+--
+In the beginning some useful parameters were declared which were later updated. After this declaration, the image/frame is converted to grayscale and gaussian blur is applied in order for the image to be prepared for canny edge detector. This function then outputs an image containing only the edges in the original frame. This is applied because the lane lines are usually white/yellow lines over black/gray asphalts and the edge of the lines should be very sudden. On the image containing these edges, the hough_lines function is used in order to find the lanes, but not before defining a region of interest. The region of interest assures that the lines are not polluted with points outside the actual lanes. Some offsets are dynamically calculated based on the image shape in order to have the minimal interest area.
 
 This pipeline was then tested on the test_images folder and output images were saved to test_images_output. The parameters were tweaked in order to get better results.
 
